@@ -1,5 +1,16 @@
+import Calendar from "./components/Calendar/Calendar";
+import Header from "./components/Header/Header";
+
 function App() {
-  return <h1>Hello world!</h1>;
+  return (
+    <div>
+      <Header
+        title="Daydreamer"
+        subtitle="Plan your days with a splash of colour ✨"
+      />
+      <Calendar />
+    </div>
+  );
 }
 
 export default App;
