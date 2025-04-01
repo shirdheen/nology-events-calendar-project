@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./Calendar.module.scss";
+import Modal from "../Modal/Modal";
 
 const daysOfWeek = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat"]; // To show in the calendar header row
 // Starts with "Sun" (index 0) since JS Date.getDay() treats Sunday as 0
@@ -10,9 +11,13 @@ const Calendar: React.FC = () => {
   // Initially set to new Date() - today's date
   // setCurrentDate updates the state when switching months
 
+  const [selectedDay, setSelectedDay] = useState<number | null>(null);
+
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
   // Extracts the year and month number (0-based) from current date
+
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date
 
   const firstDayOfMonth = new Date(year, month, 1); // The first day of the current month
   const lastDayOfMonth = new Date(year, month + 1, 0); // The last day of the current month. Setting day to 0 for the next month gives the last day of this month
@@ -73,13 +78,20 @@ const Calendar: React.FC = () => {
             <div
               key={day}
               className={`${styles.dayCell} ${isToday ? styles.today : ""}`}
-              onClick={() => alert(`Clicked ${day}/${month + 1}/${year}`)}
+              onClick={() => setSelectedDay(day)}
             >
               {day}
             </div>
           );
         })}
       </div>
+
+      <Modal isOpen={selectedDay !== null} onClose={() => setSelectedDay(null)}>
+        <h3>Selected Date</h3>
+        <p>
+          {selectedDay}/{month + 1}/{year}
+        </p>
+      </Modal>
     </div>
   );
 };
