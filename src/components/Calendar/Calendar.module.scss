@@ -71,3 +71,23 @@
   color: $brilliance;
   font-weight: bold;
 }
+
+.viewToggle {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+
+  button {
+    padding: 0.4rem 0.8rem;
+    border: none;
+    background-color: $may-day;
+    color: $brilliance;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &.active {
+      background-color: $pompelmo;
+    }
+  }
+}
