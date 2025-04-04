@@ -31,7 +31,10 @@ const MonthView: React.FC<MonthViewProps> = ({
 
       {/* Adds empty cells before day 1 of the month starts to align it properly with the correct weekday */}
       {blankDays.map((_, i) => (
-        <div key={`blank-${i}`} className={styles.dayCell}></div>
+        <div
+          key={`blank-${i}`}
+          className={`${styles.dayCell} ${styles.blankCell}`}
+        ></div>
       ))}
 
       {/* Loops through all the days of the current month and renders them as clickable cells */}

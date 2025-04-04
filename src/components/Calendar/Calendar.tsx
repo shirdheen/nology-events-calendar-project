@@ -3,7 +3,7 @@ import styles from "./Calendar.module.scss";
 import Modal from "../Modal/Modal";
 import { useCalendar } from "../../hooks/useCalendar";
 import MonthView from "../views/MonthView";
-import WeekView from "../views/WeekVIew";
+import WeekView from "../views/WeekView";
 import DayView from "../views/DayView";
 
 const daysOfWeek = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat"]; // To show in the calendar header row
@@ -14,7 +14,7 @@ type ViewMode = "month" | "week" | "day";
 const Calendar: React.FC = () => {
   // Declares a function React component using TypeScript
 
-  const [selectedDay, setSelectedDay] = useState<number | null>(null);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [viewMode, setViewMode] = useState<ViewMode>("month");
 
   const {
@@ -25,17 +25,32 @@ const Calendar: React.FC = () => {
     blankDays,
     goToPrevMonth,
     goToNextMonth,
+    goToNextWeek,
+    goToPrevWeek,
   } = useCalendar();
+
+  const handlePrev = () => {
+    if (viewMode === "month") goToPrevMonth();
+    else if (viewMode === "week") goToPrevWeek();
+  };
+
+  const handleNext = () => {
+    if (viewMode === "month") goToNextMonth();
+    else if (viewMode === "week") goToNextWeek();
+  };
 
   return (
     <div className={styles.calendar}>
       <div className={styles.header}>
-        <button onClick={goToPrevMonth}>{"<"}</button>
+        <button onClick={handlePrev}>{"<"}</button>
         <h2>
-          {currentDate.toLocaleString("default", { month: "long" })} {year}
+          {currentDate.toLocaleString("default", {
+            month: "long",
+            year: "numeric",
+          })}
         </h2>
         {/* Formats month as full string in local language */}
-        <button onClick={goToNextMonth}>{">"}</button>
+        <button onClick={handleNext}>{">"}</button>
       </div>
 
       {/* View mode toggle */}
@@ -68,16 +83,34 @@ const Calendar: React.FC = () => {
           daysArray={daysArray}
           month={month}
           year={year}
-          onDayClick={setSelectedDay}
+          onDayClick={(day) => {
+            const date = new Date(year, month, day);
+            setSelectedDate(date);
+          }}
         />
       )}
-      {viewMode === "week" && <WeekView />}
+      {viewMode === "week" && (
+        <WeekView
+          currentDate={currentDate}
+          onDayClick={(date) => {
+            setSelectedDate(date);
+          }}
+        />
+      )}
       {viewMode === "day" && <DayView />}
 
-      <Modal isOpen={selectedDay !== null} onClose={() => setSelectedDay(null)}>
+      <Modal
+        isOpen={selectedDate !== null}
+        onClose={() => setSelectedDate(null)}
+      >
         <h3>Selected Date</h3>
         <p>
-          {selectedDay}/{month + 1}/{year}
+          {selectedDate?.toLocaleDateString("default", {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          })}
         </p>
       </Modal>
     </div>

@@ -91,3 +91,38 @@
     }
   }
 }
+
+.weekGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.weekDayCell {
+  background-color: $sea-lavender;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $dynamic-yellow;
+  }
+}
+
+.weekDayLabel {
+  font-weight: bold;
+  color: $black-violet;
+  margin-bottom: 0.3rem;
+}
+
+.blankCell {
+  background-color: gray;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.overflowDay {
+  opacity: 0.6;
+}

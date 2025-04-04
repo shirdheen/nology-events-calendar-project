@@ -29,11 +29,25 @@ export function useCalendar() {
 
   // Date automatically handles year overflow
 
+  const goToPrevWeek = () => {
+    const prev = new Date(currentDate);
+    prev.setDate(prev.getDate() - 7);
+    setCurrentDate(prev);
+  };
+
+  const goToNextWeek = () => {
+    const next = new Date(currentDate);
+    next.setDate(next.getDate() + 7);
+    setCurrentDate(next);
+  };
+
   return {
     currentDate,
     ...calendarMeta,
     goToPrevMonth,
     goToNextMonth,
+    goToPrevWeek,
+    goToNextWeek,
     setCurrentDate,
   };
 }
