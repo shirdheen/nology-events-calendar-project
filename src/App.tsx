@@ -5,7 +5,7 @@ function App() {
   return (
     <div>
       <Header
-        title="Daydreamer"
+        title="DoodleDay"
         subtitle="Plan your days with a splash of colour ✨"
       />
       <Calendar />

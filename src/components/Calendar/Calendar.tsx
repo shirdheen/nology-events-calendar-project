@@ -27,16 +27,20 @@ const Calendar: React.FC = () => {
     goToNextMonth,
     goToNextWeek,
     goToPrevWeek,
+    goToNextDay,
+    goToPrevDay,
   } = useCalendar();
 
   const handlePrev = () => {
     if (viewMode === "month") goToPrevMonth();
     else if (viewMode === "week") goToPrevWeek();
+    else if (viewMode === "day") goToPrevDay();
   };
 
   const handleNext = () => {
     if (viewMode === "month") goToNextMonth();
     else if (viewMode === "week") goToNextWeek();
+    else if (viewMode === "day") goToNextDay();
   };
 
   return (
@@ -97,7 +101,7 @@ const Calendar: React.FC = () => {
           }}
         />
       )}
-      {viewMode === "day" && <DayView />}
+      {viewMode === "day" && <DayView currentDate={currentDate} />}
 
       <Modal
         isOpen={selectedDate !== null}

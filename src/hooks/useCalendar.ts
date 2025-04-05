@@ -41,6 +41,18 @@ export function useCalendar() {
     setCurrentDate(next);
   };
 
+  const goToPrevDay = () => {
+    const prev = new Date(currentDate);
+    prev.setDate(prev.getDate() - 1);
+    setCurrentDate(prev);
+  };
+
+  const goToNextDay = () => {
+    const next = new Date(currentDate);
+    next.setDate(next.getDate() + 1);
+    setCurrentDate(next);
+  };
+
   return {
     currentDate,
     ...calendarMeta,
@@ -48,6 +60,8 @@ export function useCalendar() {
     goToNextMonth,
     goToPrevWeek,
     goToNextWeek,
+    goToPrevDay,
+    goToNextDay,
     setCurrentDate,
   };
 }

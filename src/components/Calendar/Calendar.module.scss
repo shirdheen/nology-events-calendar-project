@@ -126,3 +126,52 @@
 .overflowDay {
   opacity: 0.6;
 }
+
+.dayView {
+  padding: 1rem;
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+
+.dayTitle {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: $black-violet;
+  font-size: 1.3rem;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.timeSlot {
+  display: flex;
+  align-items: flex-start;
+  border: 1px solid #e0e0e0;
+  padding: 0.75rem;
+  border-radius: 6px;
+  background-color: $brilliance;
+  min-height: 60px;
+}
+
+.timeLabel {
+  width: 60px;
+  font-weight: bold;
+  color: $black-violet;
+  font-size: 0.9rem;
+}
+
+.slotContent {
+  flex: 1;
+  border-left: 1px solid #ddd;
+  margin-left: 0.5rem;
+  padding-left: 0.75rem;
+}
+
+.placeholderText {
+  color: #aaa;
+  font-size: italic;
+  font-size: 0.9rem;
+}

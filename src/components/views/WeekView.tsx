@@ -37,8 +37,10 @@ const WeekView: React.FC<WeekViewProps> = ({ currentDate, onDayClick }) => {
             onClick={() => onDayClick(date)} // Communicates clicked day back to the parent (Calendar component)
           >
             <div className={styles.weekDayLabel}>
+              {/* Shows the abbreviated weekday name */}
               {date.toLocaleDateString("default", { weekday: "short" })}
             </div>
+            {/* Day number */}
             <div>{date.getDate()}</div>
           </div>
         );
