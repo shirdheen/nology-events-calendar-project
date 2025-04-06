@@ -29,6 +29,7 @@ const Calendar: React.FC = () => {
     goToPrevWeek,
     goToNextDay,
     goToPrevDay,
+    goToToday,
   } = useCalendar();
 
   const handlePrev = () => {
@@ -43,18 +44,30 @@ const Calendar: React.FC = () => {
     else if (viewMode === "day") goToNextDay();
   };
 
+  const handleToday = () => {
+    goToToday();
+  };
+
   return (
     <div className={styles.calendar}>
       <div className={styles.header}>
-        <button onClick={handlePrev}>{"<"}</button>
-        <h2>
-          {currentDate.toLocaleString("default", {
-            month: "long",
-            year: "numeric",
-          })}
-        </h2>
-        {/* Formats month as full string in local language */}
-        <button onClick={handleNext}>{">"}</button>
+        <div className={styles.navGroup}>
+          <button onClick={handlePrev}>{"<"}</button>
+          <h2>
+            {currentDate.toLocaleString("default", {
+              month: "long",
+              year: "numeric",
+            })}
+          </h2>
+          {/* Formats month as full string in local language */}
+          <button onClick={handleNext}>{">"}</button>
+        </div>
+      </div>
+
+      <div className={styles.todayWrapper}>
+        <button onClick={handleToday} className={styles.todayButton}>
+          Today
+        </button>
       </div>
 
       {/* View mode toggle */}

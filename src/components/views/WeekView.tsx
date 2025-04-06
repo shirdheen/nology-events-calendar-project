@@ -1,5 +1,9 @@
 import React from "react";
-import { getStartOfWeek, getWeekDatesWithMeta } from "../../utils/date";
+import {
+  getStartOfWeek,
+  getVisibleMonthForWeek,
+  getWeekDatesWithMeta,
+} from "../../utils/date";
 import styles from "../Calendar/Calendar.module.scss";
 
 interface WeekViewProps {
@@ -9,10 +13,9 @@ interface WeekViewProps {
 
 const WeekView: React.FC<WeekViewProps> = ({ currentDate, onDayClick }) => {
   const startOfWeek = getStartOfWeek(currentDate); // Returns the Sunday of the week the currentDate falls in
-  const weekMetaDates = getWeekDatesWithMeta(
-    startOfWeek,
-    currentDate.getMonth()
-  ); // Returns an array of 7 objects (with an isOverflow flag)
+  const visibleMonth = getVisibleMonthForWeek(startOfWeek);
+
+  const weekMetaDates = getWeekDatesWithMeta(startOfWeek, visibleMonth); // Returns an array of 7 objects (with an isOverflow flag)
 
   const today = new Date(); // Highlights today's date in the calendar
 
@@ -26,7 +29,8 @@ const WeekView: React.FC<WeekViewProps> = ({ currentDate, onDayClick }) => {
     <div className={styles.weekGrid}>
       {/* Loops over each day in the current week */}
       {weekMetaDates.map(({ date, isOverflow }) => {
-        const isToday = isSameDay(date, today); // Check if this day is "today"
+        const isToday =
+          isSameDay(date, today) && date.getMonth() === currentDate.getMonth(); // Check if this day is "today"
 
         return (
           <div

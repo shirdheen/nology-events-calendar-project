@@ -8,6 +8,12 @@ export function getStartOfWeek(date: Date): Date {
   return start;
 }
 
+export function getVisibleMonthForWeek(startOfWeek: Date): number {
+  const middleDay = new Date(startOfWeek);
+  middleDay.setDate(startOfWeek.getDate() + 3);
+  return middleDay.getMonth();
+}
+
 // Builds an array of 7 days starting from the start of week date (Sunday)
 // Each date is returned with an extra flag: isOverflow to mark if it's outside the current month
 export function getWeekDatesWithMeta(

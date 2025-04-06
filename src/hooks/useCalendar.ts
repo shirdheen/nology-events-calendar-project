@@ -53,6 +53,10 @@ export function useCalendar() {
     setCurrentDate(next);
   };
 
+  const goToToday = () => {
+    setCurrentDate(new Date());
+  };
+
   return {
     currentDate,
     ...calendarMeta,
@@ -63,5 +67,6 @@ export function useCalendar() {
     goToPrevDay,
     goToNextDay,
     setCurrentDate,
+    goToToday,
   };
 }
