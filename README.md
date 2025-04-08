@@ -14,7 +14,7 @@ The Events Calendar app is a responsive and accessible calendar application buil
 
 ## Live Demo
 
-- Frontend (GitHub pages):
+- Frontend (Github pages): https://shirdheen.github.io/nology-events-calendar-project/
 
 ---
 
