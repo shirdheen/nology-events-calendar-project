@@ -20,6 +20,8 @@ The Events Calendar app is a responsive and accessible calendar application buil
 
 ## Kanban Board
 
+![Kanban board](./src/assets/2025-04-08%20-%2010_19_17%20-%20Nology%20-%20Events%20Calendar%20Project%20_%20Trello.png)
+
 ---
 
 ## Tech Stack
